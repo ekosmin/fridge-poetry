@@ -4,11 +4,8 @@ module Main {
     export class Level extends Phaser.State {
 
         public words: Phaser.Group;
-
-        private static words: string[] = ['boil', 'apparatus', 'away', 'and', 'above', 'frantic', 'enormous', 'cry',
-                                          'but', 'is', 'if', 'I', 'honey', 'her', 'girl', 'on', 'not', 'mad', 'ly',
-                                          'like', 'lie', 'the', 'still', 'some', 'she', 's', 's', 'rip', 'you',
-                                          'woman', 'why', 'use', 'time', 'the', 'you'];
+        private static poetryWords: string[] = ['there', 'was', 'one', 'URL', 'parameter', 'so', 'this', 'default',
+            'list', 'was', 'used', 'instead'];
 
         create() {
             this.game.stage.backgroundColor = '#777777';
@@ -17,9 +14,14 @@ module Main {
                 wordWrap: true, wordWrapWidth: this.game.width};
             var currentX: number = 0;
             var currentY: number = 0;
+            var words: string[] = this.getUrlVariables();
+            if (words.length == 1) {
+                // for testing
+                words = Level.poetryWords;
+            }
 
-            for (var i: number = 0; i < Level.words.length; i++) {
-                var word: string = Level.words[i];
+            for (var i: number = 0; i < words.length; i++) {
+                var word: string = words[i];
                 var text: Phaser.Text = this.game.add.text(0, 0, word, style, this.words);
                 this.placeText(text, currentX, currentY);
                 currentX = text.x + text.width;
@@ -27,6 +29,11 @@ module Main {
                 text.inputEnabled = true;
                 text.input.enableDrag();
             }
+        }
+
+        private getUrlVariables(): string[] {
+            var searchString: string = window.location.search.substring(1);
+            return searchString.split(',');
         }
 
         private placeText(text: Phaser.Text, currentX: number, currentY: number): void {
