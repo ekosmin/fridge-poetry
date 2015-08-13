@@ -5,6 +5,7 @@ module Main {
 
 
         preload() {
+            this.load.image('button', 'button.png');
         }
 
         create() {

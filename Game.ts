@@ -7,7 +7,7 @@ module Main {
     export class Game extends Phaser.Game {
 
         public static WIDTH = 1050;
-        public static HEIGHT = 700;
+        public static HEIGHT = 500;
 
         constructor() {
 
