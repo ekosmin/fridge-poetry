@@ -31,12 +31,8 @@ module Main {
                 }
             }
 
-            var comm: Object = JSON.parse(localStorage.getItem("comm"));
-            if (comm != null) {
-                comm["poetryDone"] = "true";
-                comm["poetrySentence"] = sentence;
-                localStorage.setItem("comm", JSON.stringify(comm));
-            }
+            document["poetryDone"] = "true";
+            document["poetrySentence"] = sentence;
         }
     }
 }
